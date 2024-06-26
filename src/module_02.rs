@@ -96,4 +96,31 @@ pub mod using_generics_to_reduce_code_duplication_v2 {
         let loc = Coordinate { lat: 34, lon: -118 };
         loc.print();
     }
+
+    enum Result<T, E> {
+        Ok(T),
+        Err(E),
+    }
+
+    fn divide(a: f64, b: f64) -> Result<f64, String> {
+        if b == 0.0 {
+            Result::Err(String::from("Cannot divide by zero"))
+        } else {
+            Result::Ok(a / b)
+        }
+    }
+
+    pub fn enums() {
+        let result = divide(10.0, 2.0);
+        match result {
+            Result::Ok(val) => println!("Result: {}", val),
+            Result::Err(err) => println!("Error: {}", err)
+        }
+
+        let result2 = divide(10.0, 0.0);
+        match result2 {
+            Result::Ok(val) => println!("Result: {}", val),
+            Result::Err(err) => println!("Error: {}", err)
+        }
+    }
 }
