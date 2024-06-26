@@ -32,4 +32,24 @@ pub mod using_generics_to_reduce_code_duplication {
         print_vector(&floats, "Floats list");
         print_vector(&strings, "Strings list");
     }
+
+    struct Coordinate<T, U> {
+        lat: T,
+        lon: U
+    }
+
+    pub fn structs() {
+        let location1 = Coordinate {
+            lat: 40.712776,
+            lon: -74.005974
+        };
+
+        let location2 = Coordinate {
+            lat: 40,
+            lon: -74.005974
+        };
+
+        println!("Location 1: ({}, {})", location1.lat, location1.lon);
+        println!("Location 2: ({}, {})", location2.lat, location2.lon);
+    }
 }
