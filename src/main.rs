@@ -27,5 +27,6 @@ fn main() {
     // defining_shared_behaviour_with_traits_v4::traits_as_return_types();
 
     // Module 04 - Using Advanced Traits
-    using_advanced_traits::associated_types();
+    // using_advanced_traits::associated_types();
+    using_advanced_traits::default_generic_type_parameters_and_operator_overloading();
 }
