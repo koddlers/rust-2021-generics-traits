@@ -57,4 +57,43 @@ pub mod using_advanced_traits {
             println!("{}", false);
         }
     }
+
+    trait Printer {
+        fn write(&self);
+    }
+
+    trait File {
+        fn write(&self);
+    }
+
+    struct Logger;
+
+    impl Logger {
+        fn write(&self) {
+            println!("We write this to the screen");
+        }
+    }
+
+    impl Printer for Logger {
+        fn write(&self) {
+            println!("Write this to the printer");
+        }
+    }
+
+    impl File for Logger {
+        fn write(&self) {
+            println!("Write this to the file");
+        }
+    }
+
+    pub fn fully_qualified_syntax() {
+        let logger = Logger;
+        logger.write();
+
+        Printer::write(&logger);
+        File::write(&logger);
+        Logger::write(&logger);
+
+        <Logger as Printer>::write(&logger);
+    }
 }

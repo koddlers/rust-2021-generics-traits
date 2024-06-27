@@ -28,5 +28,6 @@ fn main() {
 
     // Module 04 - Using Advanced Traits
     // using_advanced_traits::associated_types();
-    using_advanced_traits::default_generic_type_parameters_and_operator_overloading();
+    // using_advanced_traits::default_generic_type_parameters_and_operator_overloading();
+    using_advanced_traits::fully_qualified_syntax();
 }
