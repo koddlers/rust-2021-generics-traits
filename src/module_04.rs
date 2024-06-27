@@ -97,3 +97,40 @@ pub mod using_advanced_traits {
         <Logger as Printer>::write(&logger);
     }
 }
+
+pub mod using_advanced_traits_v2 {
+    // Define a supertrait
+    trait Speak {
+        fn speak(&self);
+    }
+
+    // Define a trait that depends on the supertrait
+    trait Greet: Speak {
+        fn greet(&self) {
+            self.speak();    // call a method from supertrait
+            println!("Nice to meet you!");
+        }
+    }
+
+    struct Person {
+        name: String,
+    }
+
+    // Implement the supertrait `Speak` for the `Person` struct
+    impl Speak for Person {
+        fn speak(&self) {
+            println!("Hello my name is {}", self.name);
+        }
+    }
+
+    // Implement the dependant trait `Greet` for `Person`
+    // Note: If `Person` implements `Greet`, it also has to implement the supertrait `Speak`,
+    // commenting out the above implementation will cause a panic
+    impl Greet for Person {}
+
+    pub fn supertraits() {
+        let person = Person { name: String::from("Shaun") };
+        // the following calls both `speak()` from supertrait and `greet()` from the dependant trait
+        person.greet();
+    }
+}
