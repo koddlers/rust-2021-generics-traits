@@ -8,6 +8,7 @@ use module_02::using_generics_to_reduce_code_duplication_v2;
 use module_03::defining_shared_behaviour_with_traits;
 use module_03::defining_shared_behaviour_with_traits_v2;
 use module_03::defining_shared_behaviour_with_traits_v3;
+use module_03::defining_shared_behaviour_with_traits_v4;
 
 
 fn main() {
@@ -20,5 +21,6 @@ fn main() {
     // Module 03 - Defining Shared Behaviour with Traits
     // defining_shared_behaviour_with_traits::defining_a_trait();
     // defining_shared_behaviour_with_traits_v2::default_implementations();
-    defining_shared_behaviour_with_traits_v3::traits_as_parameters_and_trait_bounds();
+    // defining_shared_behaviour_with_traits_v3::traits_as_parameters_and_trait_bounds();
+    defining_shared_behaviour_with_traits_v4::traits_as_return_types();
 }

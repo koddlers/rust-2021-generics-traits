@@ -227,3 +227,58 @@ pub mod defining_shared_behaviour_with_traits_v3 {
         make_generic_talk_v2(&cat)
     }
 }
+
+pub mod defining_shared_behaviour_with_traits_v4 {
+    struct Dog {
+        name: String,
+    }
+
+    struct Cat {
+        name: String,
+    }
+
+    trait Animal {
+        fn talk(&self) -> String;
+    }
+
+    impl Animal for Dog {
+        fn talk(&self) -> String {
+            "Aaawooooo".to_string()
+        }
+    }
+
+    impl Animal for Cat {
+        fn talk(&self) -> String {
+            "Meow".to_string()
+        }
+    }
+
+    fn return_talking_animal() -> impl Animal {
+        Cat {
+            name: "Cujo".to_string()
+        }
+    }
+
+    fn return_talking_animal_box(dog: bool) -> Box<dyn Animal> {
+        if dog {
+            Box::new(Dog {
+                name: "Cujo".to_string(),
+            })
+        } else {
+            Box::new(Cat {
+                name: "Felix".to_string()
+            })
+        }
+    }
+
+    pub fn traits_as_return_types() {
+        let animal = return_talking_animal();
+        println!("{}", animal.talk());
+
+        let dog = return_talking_animal_box(true);
+        println!("{}", dog.talk());
+
+        let cat = return_talking_animal_box(false);
+        println!("{}", cat.talk());
+    }
+}
