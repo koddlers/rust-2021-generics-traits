@@ -130,3 +130,100 @@ pub mod defining_shared_behaviour_with_traits_v2 {
         println!("{} says {}\n", butterfly.name, butterfly.talk());
     }
 }
+
+pub mod defining_shared_behaviour_with_traits_v3 {
+    struct Dog {
+        name: String,
+    }
+
+    struct Cat {
+        name: String,
+    }
+
+    struct Jellyfish {
+        name: String,
+    }
+
+    struct Butterfly {
+        name: String,
+    }
+
+    trait Animal {
+        fn talk(&self) -> String {
+            "I can't talk".to_string()
+        }
+    }
+
+    impl Animal for Dog {
+        fn talk(&self) -> String {
+            "Aaawooooo".to_string()
+        }
+    }
+
+    impl Animal for Cat {
+        fn talk(&self) -> String {
+            "Meow".to_string()
+        }
+    }
+
+    impl Animal for Jellyfish {}
+
+    impl Animal for Butterfly {}
+
+    fn make_dog_talk(dog: &Dog) {
+        println!("This dog says: {}", dog.talk());
+    }
+
+    fn make_animal_talk(animal: &(impl Animal + std::fmt::Display)) {
+        println!("This animal says: {}", animal.talk());
+    }
+
+    fn make_generic_talk<T: Animal>(animal: &T) {
+        println!("This animal says: {}", animal.talk());
+    }
+
+    fn make_generic_talk_v2<T>(animal: &T) where T: Animal + std::fmt::Display {
+        println!("This animal says: {}", animal.talk());
+    }
+
+    fn make_animal_zoo(
+        animal1: &impl Animal,
+        animal2: &impl Animal,
+        animal3: &impl Animal,
+        animal4: &impl Animal,
+    ) {}
+
+    // courtesy of copilot
+    impl std::fmt::Display for Cat {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "Cat named {}", self.name)
+        }
+    }
+
+    pub fn traits_as_parameters_and_trait_bounds() {
+        let dog = Dog {
+            name: "Cujo".to_string()
+        };
+
+        let cat = Cat {
+            name: "Coco".to_string()
+        };
+
+        let jelly = Jellyfish {
+            name: "Jelly".to_string()
+        };
+
+        let butterfly = Butterfly {
+            name: "Monarch".to_string()
+        };
+
+        make_dog_talk(&dog);
+
+        make_animal_talk(&cat);
+        // make_animal_talk(&jelly);
+        // make_animal_talk(&butterfly);
+
+        make_generic_talk(&dog);
+        make_generic_talk_v2(&cat)
+    }
+}
