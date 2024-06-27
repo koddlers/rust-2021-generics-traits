@@ -134,3 +134,42 @@ pub mod using_advanced_traits_v2 {
         person.greet();
     }
 }
+
+pub mod using_advanced_traits_v3 {
+    // Define a new type that wraps a u32 value
+    struct Meters(u32);
+
+    // Define a function that takes a value of the newtype
+    fn print_distance(distance: Meters) {
+        println!("The distance is: {} meters.", distance.0);
+    }
+
+    pub fn newtype_pattern() {
+        let distance = Meters(100);
+        print_distance(distance);
+
+        // this line will cause a compile time error, since we are expecting a value of `Meters` type
+        // print_distance(100);
+    }
+
+    use std::fmt;
+    use std::fmt::Formatter;
+    use std::fmt::Result;
+
+    struct Wrapper(Vec<String>);
+
+    impl fmt::Display for Wrapper {
+        fn fmt(&self, formatter: &mut Formatter) -> Result {
+            write!(formatter, "[{}]", self.0.join(", "))
+        }
+    }
+
+    pub fn newtype_wrapper() {
+        let wrapper = Wrapper(vec![
+            String::from("hello"),
+            String::from("rustaceans")
+        ]);
+
+        println!("wrapper = {}", wrapper);
+    }
+}

@@ -12,6 +12,7 @@ use module_03::defining_shared_behaviour_with_traits_v3;
 use module_03::defining_shared_behaviour_with_traits_v4;
 use module_04::using_advanced_traits;
 use module_04::using_advanced_traits_v2;
+use module_04::using_advanced_traits_v3;
 
 
 fn main() {
@@ -31,5 +32,7 @@ fn main() {
     // using_advanced_traits::associated_types();
     // using_advanced_traits::default_generic_type_parameters_and_operator_overloading();
     // using_advanced_traits::fully_qualified_syntax();
-    using_advanced_traits_v2::supertraits();
+    // using_advanced_traits_v2::supertraits();
+    // using_advanced_traits_v3::newtype_pattern();
+    using_advanced_traits_v3::newtype_wrapper();
 }
