@@ -1,6 +1,7 @@
 #![allow(unused)]
 
 mod module_02;
+mod module_03;
 
 use module_02::using_generics_to_reduce_code_duplication;
 use module_02::using_generics_to_reduce_code_duplication_v2;
